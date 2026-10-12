@@ -128,6 +128,16 @@ signFunction' a
   !!!!!                                                    !!!!!
   !!!!!    count factorial with recursion using guards     !!!!!
   !!!!!                                                    !!!!!
+  
+    ghci> factorial 10 10
+    3628800
+    ghci> factorial' 3   
+    6     
+    ghci> factorial' 10
+    3628800
+    ghci> factorial  3 3
+    6 
+                                                     
 -}
 
 factorial :: Int -> Int -> Int
@@ -147,6 +157,14 @@ factorial' n
   !!!!!                                                 !!!!!
   !!!!!    count modulo with recursion using guards     !!!!!
   !!!!!                                                 !!!!!
+
+ghci> myModulo (-1) 5
+-1    
+ghci> myModulo 1 5   
+1     
+ghci> myModulo 6 5
+1     
+
 -}
 
 myModulo :: Int -> Int -> Int
