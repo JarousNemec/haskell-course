@@ -123,4 +123,34 @@ signFunction' a
     | a < 0 = (-1)
     | otherwise = 1
 
--- TODO factorial
+
+{-
+  !!!!!                                                    !!!!!
+  !!!!!    count factorial with recursion using guards     !!!!!
+  !!!!!                                                    !!!!!
+-}
+
+factorial :: Int -> Int -> Int
+factorial number summary
+    | (number - 1) <= 0 = summary
+    | (number - 1) > 0 = factorial (number - 1) (summary * (number - 1))
+    | otherwise = 0
+
+factorial' :: Int -> Int
+factorial' n
+    | n < 0 = error "Factorial is not defined for minus numbers!!!"
+    | n == 0 = 1
+    | otherwise = n * factorial' (n - 1)
+
+
+{-
+  !!!!!                                                 !!!!!
+  !!!!!    count modulo with recursion using guards     !!!!!
+  !!!!!                                                 !!!!!
+-}
+
+myModulo :: Int -> Int -> Int
+myModulo a d
+    | d < 0 = error "Dividing by zero isnt allowed!!!"
+    | a < d = a
+    | otherwise = myModulo (a - d) d
