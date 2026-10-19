@@ -63,8 +63,88 @@ getSecondItem []     = error "getSecondItem: empty list"
 getSecondItem [_]    = error "getSecondItem: list has only one item"
 getSecondItem (_:second:_) = second
 
+{-
+ghci> getBody [1,2,3,4]
+[2,3,4]
+ghci> getBody [1,2..4]
+[2,3,4]
+ghci> getBody [1]
+[]
+ghci> getBody []
+*** Exception: getBody: empty list
+CallStack (from HasCallStack):
+  error, called at Lists\Lists.hs:67:20 in main:Lists
+ghci>
+-}
 getBody :: [a] -> [a]
 getBody []       = error "getBody: empty list"
 getBody (_:body) = body
 
+{-
+ghci> getLast [1,2..400]
+400
+ghci> getLast [1,2,3,4] 
+4
+-}
 
+getLast :: [a] -> a
+getLast [last] = last
+getLast (_:body) = getLast body
+{-
+getPreLast :: [a] -> a
+getPreLast [preLast:_] = preLast
+getPreLast [_:body] = getPreLast body
+-}
+
+{-
+ghci> contains [1,2,3,4] 2
+True
+ghci> contains [1,2,3,4] 3
+True
+ghci> contains [1,2,3,4] 5
+False
+ghci> contains [] 5       
+False
+-}
+
+--contains :: [a] -> a -> Bool TODO: add definition
+contains (head:body) item
+    | head == item = True
+    | otherwise = contains body item
+contains [] item = False
+
+{-
+ghci> getOnIndex [1,2,3,4,5,6] 2
+3
+-}
+--TODO: add definition
+getOnIndex (head:body) index
+    | index == 0 = head
+    | index > 0 = getOnIndex body (index-1)
+getOnIndex [] _ = error "Index out of bounds"
+
+--TODO: add definition
+--dummy solution xD
+getLength (head:body) n = getLength body (n+1)
+getLength [] n = n
+
+{-
+ghci> getLength' [0,1,26,6,6,6,6,66,6] 
+9
+ghci> getLength' []
+0
+ghci> getLength' [0]
+1
+-}
+--TODO: add definition
+getLength' [] = 0
+getLength' [item] = 1
+getLength' (head:body) = 1 + getLength' body
+
+--TODO: add definition
+getSummary [] = 0
+getSummary (head:body) = head + getSummary body
+
+--TODO: add definition
+getProduct [] = 1
+getProduct (head:body) = head * getProduct body
