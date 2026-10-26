@@ -148,3 +148,73 @@ getSummary (head:body) = head + getSummary body
 --TODO: add definition
 getProduct [] = 1
 getProduct (head:body) = head * getProduct body
+
+--TODO: add definition
+{-
+ghci> removeFirstAppearance 0 [1,2,0,3,10,5]
+[1,2,3,10,5]
+-}
+removeFirstAppearance _ [] = []
+removeFirstAppearance item (head:body)
+    | head == item = body
+    | otherwise = head : removeFirstAppearance item body
+
+--TODO: add definition
+{-
+ghci> removeAllAppearance 55 [1,2,0,3,10,5,0,4,3,0,1]  
+[1,2,3,10,5,4,3,1]
+-}
+removeAllAppearances _ [] = []
+removeAllAppearances item (head:body)
+    | head == item = removeAllAppearances item body
+    | otherwise = head : (removeAllAppearances item body)
+
+--TODO: add definition
+-- without using acumulator
+{-
+ghci> rotateList [1,2,3,4,5]
+[5,4,3,2,1]
+-}
+rotateList [] = []
+rotateList (head:body) = rotateList body ++ [head] 
+
+--TODO: add definition
+--using acumulator
+{-
+ghci> rotateListAcum [1,2,3]
+[3,2,1]
+-}
+rotateListAcum list = rotateListAcum' list []
+rotateListAcum' [] a = a
+rotateListAcum' (head:body) a = rotateListAcum' body (head:a)
+
+--TODO: add definition
+add2 = (+2)
+
+--TODO: add definition
+powerBy6 = (^6)
+
+--TODO: add definition
+power6By = (6^)
+
+--TODO: add definition
+{-
+ghci> applyBinaryFunc 6 6 (+)
+12    
+ghci> applyBinaryFunc 6 6 (-)
+0     
+ghci> applyBinaryFunc 6 6 (*)
+36    
+ghci> applyBinaryFunc 6 6 (/)
+1.0
+ghci>
+-}
+applyBinaryFunc a b f = f a b
+
+abf12 = applyBinaryFunc 1 2 :: (Double -> Double -> Double) -> Double
+
+add1ToAll [] = []
+add1ToAll (head:body) = (head + 1) : (add1ToAll body)
+
+applyToAll _ [] = []
+applyToAll f (head:body) = (f head) : (applyToAll f body)   
